@@ -4,7 +4,7 @@ import express from 'express';
 // import paths from 'frm/paths';
 
 import { route, catchErrors } from 'lib/express-utils';
-// import s3router from './examples/s3/router';
+import gamesRouter from './games/router';
 // import postgresRouter from './examples/postgres/router';
 // import redisRouter from './examples/redis/router'
 
@@ -20,7 +20,7 @@ router.get('/api/v1/ping', route(async (req) => {
 //     );
 // }));
 
-// router.use(s3router);
+router.use(gamesRouter);
 // router.use(postgresRouter);
 // router.use(redisRouter);
 

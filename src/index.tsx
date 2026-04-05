@@ -1,23 +1,29 @@
 import React from 'react';
-import { Routes, Route } from "react-router-dom";
-// import Readme from './readme';
-// import S3Page from './examples/s3/page';
-// import PostgresPage from './examples/postgres/page';
-// import RedisPage from './examples/redis/page';
+import { Helmet } from 'react-helmet';
+import { Routes, Route } from 'react-router-dom';
+
+import * as theme from 'lib/theme';
+import { GamesPage } from './games';
+import { BoxPage } from './box/page';
+import { GamePage } from './game/page';
+
+// import { NotFoundPage } from './misc/not-found';
+// import { AuthPage } from './auth/page';
 
 export default () => {
     return (
-        <div>IT works</div>
-    )
-    // return (
-    //     <Routes>
-    //         <Route path='/' element={<Readme />} />
+        <>
+           <Helmet>
+                {theme.helmet}
+                <style>{`body { margin: 0; background: #fffcf3; padding: 0; font-family: ${theme.font.family}; }`}</style>
+            </Helmet>
 
-    //         <Route path='/examples/s3' element={<S3Page />} />
-    //         <Route path='/examples/postgres' element={<PostgresPage />} />
-    //         <Route path='/examples/redis' element={<RedisPage />} />
-            
-    //         <Route path='*' element={<div>404 not found</div>} />
-    //     </Routes>
-    // );
+            <Routes>
+                {/* <Route path='/' element={<BoxPage />} /> */}
+                <Route path='/games/:gameId' element={<GamePage />} />
+                
+                <Route path='*' element={<GamesPage />} />
+            </Routes>
+        </>
+    );
 };
