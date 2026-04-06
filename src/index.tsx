@@ -6,6 +6,7 @@ import * as theme from 'lib/theme';
 import { GamesPage } from './games';
 import { BoxPage } from './box/page';
 import { GamePage } from './game/page';
+import { AuthPage } from './session/page';
 
 // import { NotFoundPage } from './misc/not-found';
 // import { AuthPage } from './auth/page';
@@ -19,7 +20,7 @@ export default () => {
             </Helmet>
 
             <Routes>
-                {/* <Route path='/' element={<BoxPage />} /> */}
+                <Route path='/auth' element={<AuthPage />} />
                 <Route path='/games/:gameId' element={<GamePage />} />
                 
                 <Route path='*' element={<GamesPage />} />

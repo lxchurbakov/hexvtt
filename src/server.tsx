@@ -4,7 +4,7 @@ import express from 'express';
 // import paths from 'frm/paths';
 
 import { route, catchErrors } from 'lib/express-utils';
-import gamesRouter from './games/router';
+import sessionRouter from './session/router';
 // import postgresRouter from './examples/postgres/router';
 // import redisRouter from './examples/redis/router'
 
@@ -20,7 +20,7 @@ router.get('/api/v1/ping', route(async (req) => {
 //     );
 // }));
 
-router.use(gamesRouter);
+router.use('/api/session', sessionRouter);
 // router.use(postgresRouter);
 // router.use(redisRouter);
 

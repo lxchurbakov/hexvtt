@@ -36,7 +36,7 @@ export default {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.SELF_URL': JSON.stringify(process.env.SELF_URL),
+            'process.env.API_HOST': JSON.stringify(process.env.API_HOST),
         }),
     ]
 };

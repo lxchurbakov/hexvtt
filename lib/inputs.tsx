@@ -17,7 +17,7 @@ export type StyledInputProps = {
 };
 
 const StyledInput = styled.input<StyledInputProps>`
-    font-family: Google Sans;
+    font-family: "Google Sans";
     font-size: ${props => props.size || '16px'};
     font-weight: ${props => props.weight || 400};
     color: ${props => props.color || theme.colors.text};
@@ -50,7 +50,7 @@ export const LineInput = ({ type, p, placeholder, radius, value, onChange,  size
 };
 
 const StyledTextArea = styled.textarea<any>`
-    font-family: Google Sans;
+    font-family: "Google Sans";
     font-size: ${props => props.size || '16px'};
     font-weight: ${props => props.weight || 400};
     color: ${props => props.color || theme.colors.text};
