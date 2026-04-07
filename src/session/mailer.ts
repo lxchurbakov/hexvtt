@@ -12,17 +12,17 @@ const transporter = nodemailer.createTransport({
 
 /* Here come the templates */
 
-export const sendNoPasswordAuthCode = ({ email, code }: any) => {
+export const sendNoPasswordAuthCode = ({ email, token }: any) => {
   return new Promise<void>((resolve, reject) => {
     // if (process.env.NODE_ENV === 'production') {
       //
       transporter.sendMail({
         from: `devxk login <${String(process.env.SMTP_USER)}>`,
         to: email, subject: 'Someone is trying to log in',
-        text: `Use the code ${code} to confirm your login`,
+        text: `Use the code ${token} to confirm your login`,
         html: `
           <p>Someone is trying to login to devxk using this email. Use the following code to confirm the login or ignore this message.</p>
-          <h1>${code}</h1>
+          <h1><a href="http://localhost:8000/auth/${token}">Перейти</a></h1>
         `
       }, (err: Error) => err ? reject(err) : resolve());
     // } else {

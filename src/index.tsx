@@ -3,13 +3,8 @@ import { Helmet } from 'react-helmet';
 import { Routes, Route } from 'react-router-dom';
 
 import * as theme from 'lib/theme';
-import { GamesPage } from './games';
-import { BoxPage } from './box/page';
-import { GamePage } from './game/page';
-import { AuthPage } from './session/page';
 
-// import { NotFoundPage } from './misc/not-found';
-// import { AuthPage } from './auth/page';
+import { SessionPage } from './session/page';
 
 export default () => {
     return (
@@ -20,10 +15,11 @@ export default () => {
             </Helmet>
 
             <Routes>
-                <Route path='/auth' element={<AuthPage />} />
-                <Route path='/games/:gameId' element={<GamePage />} />
+                <Route path='*' element={<SessionPage />} />
+                {/* <Route path='/auth/:token' element={<ProcessTokenPage />} />
+                <Route path='/games/:gameId' element={<GamePage />} /> */}
                 
-                <Route path='*' element={<GamesPage />} />
+                {/* <Route path='*' element={<GamesPage />} /> */}
             </Routes>
         </>
     );

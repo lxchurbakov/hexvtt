@@ -3,19 +3,29 @@ import { Flex, Heading, Clickable, Paragraph, BaseProps, Card, Image } from 'lib
 
 export const Header = ({ ...props }: BaseProps) => {
     return (
-        <Card background="#e9e9e9" mt="12px" radius="36px" p="10px 0" pr="24px" {...props}>
-            <Flex justify="flex-start" p="0 18px" gap="36px" >
+        <Card background="#333333" radius="36px" p="12px 36px" w="100%" {...props}>
+            <Flex justify="space-between">
                 <Clickable>
-                    <Image w="36px" h="36px" src="logo.svg" />
-                </Clickable>
+                    <Flex gap="20px">
+                        <Image src="logo-white-out.svg" w="49px" />
 
-                <Clickable>
-                    <Heading weight="600">Главная</Heading>
+                        <Heading color="white" weight="bold" size="22px">papervtt.space</Heading>
+                    </Flex>
                 </Clickable>
+                
+                <Flex gap="20px">
+                    <Clickable>
+                        <Heading color="white" weight="600" size="18px">Главная</Heading>
+                    </Clickable>
 
-                <Clickable>
-                    <Heading weight="600">Игры</Heading>
-                </Clickable>
+                    <Clickable>
+                        <Heading color="white" weight="400" size="18px">Игры</Heading>
+                    </Clickable>
+
+                    <Clickable>
+                        <Heading color="white" weight="400" size="18px">О нас</Heading>
+                    </Clickable>
+                </Flex>
 
                 {/* <
 

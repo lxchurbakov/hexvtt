@@ -13,6 +13,7 @@ import serverMiddleware from '@/server';
 import paths from 'frm/paths';
 
 import { Forth, ForthCache } from 'lib/use-forth';
+import { SsrContext, SsrManager, SsrProvider } from 'lib/ssr';
 
 const app = express();
 
@@ -26,14 +27,17 @@ app.use(express.static(paths.assets));
 app.get('*', (req, res) => {
     const sheet = new ServerStyleSheet();
     const cache = new ForthCache();
+    const ssrManager = new SsrManager();
 
     const stream = renderToPipeableStream((
         <div id="app">
-            <StaticRouter location={req.url}>
-                <Forth mode="server" cache={cache}>
-                    {sheet.collectStyles(<Application  />)}
-                </Forth>
-            </StaticRouter>
+            <SsrProvider manager={ssrManager}>
+                <StaticRouter location={req.url}>
+                    <Forth mode="server" cache={cache}>
+                        {sheet.collectStyles(<Application  />)}
+                    </Forth>
+                </StaticRouter>
+            </SsrProvider>
         </div>
     ), {
         onShellReady() {
@@ -41,6 +45,10 @@ app.get('*', (req, res) => {
         },
         onAllReady () {
             const helmet = Helmet.renderStatic();
+
+            if (ssrManager.redirect) {
+                return res.redirect(ssrManager.redirect);
+            }
 
             res.write('<head>');
             res.write(helmet.title.toString());

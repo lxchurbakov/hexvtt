@@ -57,11 +57,11 @@ export const GamesPage = () => {
     const games = useGames();
     const [list] = useAsyncMemo(() => games.list(), [], []);
 
-    console.log({ list });
+    // console.log({ list });
 
     const create = React.useCallback(async() => {
         const id = await games.create();
-        console.log({ id })
+        // console.log({ id })
     }, []);
 
     return (
