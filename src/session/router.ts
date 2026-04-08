@@ -1,30 +1,9 @@
 import express from 'express';
-// import jwt from 'jsonwebtoken';
-// import { v4 as uuid } from 'uuid';
 
 import { HttpError, route } from 'lib/express-utils';
-// import { sendNoPasswordAuthCode } from './mail';
+import { db } from 'lib/knex';
+
 import { createJWT, readJWT } from 'lib/security';
-// import { global_map } from 'lib/json-storage';
-
-// import { get, put } from './api';
-
-// const JWT_SECRET = process.env.JWT_SECRET ?? '';
-
-// expiresIn is in seconds
-// export const createJWT = async <T>(data: T, expiresIn: number) => {
-//     // return new Promise((resolve, reject) => {
-//     //     jwt.sign(data as any, String(process.env.JWT_SECRET), { expiresIn }, (err, result) => {
-//     //         if (err) {
-//     //             reject(err);
-//     //         } else {
-//     //             resolve(result);
-//     //         }
-//     //     });
-//     // });
-
-//     return jwt.sign(data as any, String(process.env.JWT_SECRET), { expiresIn });
-// };
 
 const rand = (a: number, b: number) => Math.floor(Math.random() * (b - a) + a);
 const randOf = <T,>(s: T[]) => s.at(rand(0, s.length)) as T;
@@ -32,10 +11,6 @@ const fill = <T,>(n: number, p: (i: number) => T) => new Array(n).fill(0).map((_
 const createCode = () => fill(6, () => randOf('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split(''))).join('');
 
 const router = express.Router();
-
-// type Game = { id: string };
-
-let codes = new Map<string, string>();
 
 router.post('/', route(async (req) => {
     const { email, code } = req.body;
@@ -48,8 +23,7 @@ router.post('/', route(async (req) => {
     if (!code) {
         const codeToSend = createCode();
         
-        // А вот это нужно будет сложить в базу
-        codes.set(codeToSend, email);
+        await db.insert({ email, code: codeToSend }).into('user_codes');
 
         // Здесь будем отправлять письма
         console.log(`Attempt to login with ${email}, use code ${codeToSend}`);
@@ -58,18 +32,27 @@ router.post('/', route(async (req) => {
     }
 
     // Второй запрос, есть и мыло и код
-    if (!codes.has(code)) {
+    const codeToCheck = await db.select('*').from('user_codes').where({ email, code }).first();
+
+    if (!codeToCheck) {
         throw new HttpError(400, 'invalid_code');
     }
 
-    const emailToLoginWith = codes.get(code);
+    const emailToLoginWith = codeToCheck.email;
 
     if (!emailToLoginWith) {
         throw new HttpError(500, 'invalid_email_by_code');
     }
 
+    // Ищем юзера
+    let user = await db.select('*').from('users').where({ email }).first();
+
+    if (!user) {
+        user = await db.insert({ email }).into('users').returning('*');
+    }
+
     // Создаем JWT с этими данными сроком неделя
-    const token = await createJWT({ email }, 60 * 60 * 24 * 7);
+    const token = await createJWT(user, 60 * 60 * 24 * 7);
 
     if (!token) {
         throw new HttpError(500, 'cannot_create_token');
@@ -85,22 +68,13 @@ router.get('/', route(async (req) => {
         throw new HttpError(403, 'unauthorized');
     }
 
-    const { email } = await readJWT<{ email: string }>(token);
+    const data = await readJWT<{ email: string }>(token);
 
-    if (!email) {
+    if (!data) {
         throw new HttpError(403, 'malformed_jwt');
     }
 
-    return { email };
+    return data;
 }));
-
-// router.get('/api/games', route(async (req) => {
-//     // return get({ key: req.params.key });
-//     return global_map.get('games');
-// }));
-
-// router.delete('/games/:gameId', route(async (req) => {
-//     // return put({ key: req.params.key, value: req.body.value });
-// }));
 
 export default router;
