@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ContentContainer, PageContainer } from '@/components/containers';
+import { CondensedContainer } from '@/components/containers';
 import { Header } from '@/components/header';
 import { Button } from '@/components/button';
 
@@ -116,22 +116,20 @@ export const SessionPage = () => {
     const { user, loading } = useUser();
 
     return (
-        <PageContainer>
-            <ContentContainer pt="12px">
-                <Header mb="128px" />
+        <CondensedContainer pt="24px">
+            <Header mb="128px" />
 
-                {loading ? (
-                    <div>Loading</div>
-                ): (
-                    <>
-                        {user ? (
-                            <UserInfo />
-                        ) : (
-                            <Authorize />
-                        )}
-                    </>
-                )}                
-            </ContentContainer>
-        </PageContainer>
+            {loading ? (
+                <div>Loading</div>
+            ): (
+                <>
+                    {user ? (
+                        <UserInfo />
+                    ) : (
+                        <Authorize />
+                    )}
+                </>
+            )}                
+        </CondensedContainer>
     );
 };

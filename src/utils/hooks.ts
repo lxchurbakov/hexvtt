@@ -34,3 +34,6 @@ export const useAsyncMemo = <T,>(predicate: () => Promise<T>, deps: React.Depend
 
     return [value, loading, error] as const;
 };
+
+export const useTicker = ([value, setValue] = React.useState(false)) => 
+    React.useCallback(() => setValue(($) => !$), [value]);

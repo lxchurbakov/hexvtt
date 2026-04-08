@@ -37,5 +37,12 @@ export const useApi = () => {
         }).then((r) => r.status === 200 ? r.json() : Promise.reject(r.json()));
     }, [headers]);
 
-    return React.useMemo(() => ({ post, get }), [post, get]);
+    const _delete = React.useCallback((url: string) => {
+        return fetch(API_HOST + url, {
+            method: 'DELETE',
+            headers,
+        }).then((r) => r.status === 200 ? r.json() : Promise.reject(r.json()));
+    }, [headers]);
+
+    return React.useMemo(() => ({ post, get, delete: _delete }), [post, get, _delete]);
 };

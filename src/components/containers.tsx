@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Base, BaseProps, Container } from 'lib/atoms';
 
-export const PageContainer = ({ children, ...props }: React.PropsWithChildren<BaseProps>) => {
+export const CondensedContainer = ({ children, ...props }: React.PropsWithChildren<BaseProps>) => {
     return (
         <Container {...props}>
             {children}
@@ -10,13 +10,13 @@ export const PageContainer = ({ children, ...props }: React.PropsWithChildren<Ba
     );
 };
 
-export const ContentContainer = ({ children, ...props }: React.PropsWithChildren<BaseProps>) => {
-    return (
-        <Base {...props}>
-            {children}
-        </Base>
-    );
-};
+// export const ContentContainer = ({ children, ...props }: React.PropsWithChildren<BaseProps>) => {
+//     return (
+//         <Base {...props}>
+//             {children}
+//         </Base>
+//     );
+// };
 
 export const FullWidthContainer = ({ children, ...props }: React.PropsWithChildren<BaseProps>) => {
     return (

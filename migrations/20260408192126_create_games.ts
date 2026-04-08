@@ -3,11 +3,12 @@ import type { Knex } from "knex";
 
 export async function up(knex: Knex): Promise<void> {
     return knex.raw(`
-        CREATE TABLE IF NOT EXISTS user_codes (
+        CREATE TABLE IF NOT EXISTS games (
             id SERIAL PRIMARY KEY,
-            code VARCHAR (100) NOT NULL,
-            email VARCHAR (100) NOT NULL
-        )
+            name VARCHAR (100) NOT NULL,
+            owner_id INTEGER NOT NULL,
+            FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE
+        )    
     `);
 }
 

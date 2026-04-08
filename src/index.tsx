@@ -5,17 +5,24 @@ import { Routes, Route } from 'react-router-dom';
 import * as theme from 'lib/theme';
 
 import { SessionPage } from './session/page';
+import { NotFoundPage } from './misc/404';
+import { GamesPage } from './games/page';
+import { GamePage } from './game/page';
 
 export default () => {
     return (
         <>
            <Helmet>
                 {theme.helmet}
-                <style>{`body { margin: 0; background: #fffcf3; padding: 0; font-family: ${theme.font.family}; }`}</style>
+                <style>{`body { margin: 0; background: #ffffff; padding: 0; font-family: ${theme.font.family}; }`}</style>
             </Helmet>
 
             <Routes>
-                <Route path='*' element={<SessionPage />} />
+                <Route path='/session' element={<SessionPage />} />
+                <Route path='/games' element={<GamesPage />} />
+                <Route path='/games/:gameId' element={<GamePage />} />
+                
+                <Route path='*' element={<NotFoundPage />} />
                 {/* <Route path='/auth/:token' element={<ProcessTokenPage />} />
                 <Route path='/games/:gameId' element={<GamePage />} /> */}
                 

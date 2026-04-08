@@ -1,11 +1,11 @@
-import { ContentContainer, FullWidthContainer, PageContainer } from '@/components/containers';
+import { FullWidthContainer } from '@/components/containers';
 import { Header } from '@/components/header';
 import { Heading } from 'lib/atoms';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
 export const GamePage = () => {
-    const { gameId } = useParams()
+    const { gameId } = useParams();
 
     return (
         <FullWidthContainer>
