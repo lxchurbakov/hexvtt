@@ -1,15 +1,11 @@
-import { getUser } from '@/session/utils.server';
 import express from 'express';
-// import { v4 as uuid } from 'uuid';
-import { HttpError, route } from 'lib/express-utils';
-import { db } from 'lib/knex';
-// import { global_map } from 'lib/json-storage';
 
-// import { get, put } from './api';
+import { db } from 'lib/knex';
+import { HttpError, route } from 'lib/express-utils';
+
+import { getUser } from '@/session/utils.server';
 
 const router = express.Router();
-
-// 
 
 router.post('/', route(async (req) => {
     const owner = await getUser(req);
@@ -24,11 +20,6 @@ router.post('/', route(async (req) => {
     const [game] = await db('games').insert({ name, owner_id }).returning('*');
 
     return game;
-    // console.log({ game });
-    // const id = uuid();
-    // global_map.set('games', (await global_map.get('games') ?? []).concat([{ ...req.body.value, id } as Game]));
-    // return put({ key: req.params.key, value: req.body.value });
-    // return id;
 }));
 
 router.get('/', route(async (req) => {

@@ -1,9 +1,8 @@
 import express from 'express';
 
-import { HttpError, route } from 'lib/express-utils';
 import { db } from 'lib/knex';
-
 import { createJWT, readJWT } from 'lib/security';
+import { HttpError, route } from 'lib/express-utils';
 
 const rand = (a: number, b: number) => Math.floor(Math.random() * (b - a) + a);
 const randOf = <T,>(s: T[]) => s.at(rand(0, s.length)) as T;

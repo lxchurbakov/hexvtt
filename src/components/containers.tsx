@@ -10,14 +10,6 @@ export const CondensedContainer = ({ children, ...props }: React.PropsWithChildr
     );
 };
 
-// export const ContentContainer = ({ children, ...props }: React.PropsWithChildren<BaseProps>) => {
-//     return (
-//         <Base {...props}>
-//             {children}
-//         </Base>
-//     );
-// };
-
 export const FullWidthContainer = ({ children, ...props }: React.PropsWithChildren<BaseProps>) => {
     return (
         <Base w="100vw" style={{ overflow: 'hidden' }} {...props}>

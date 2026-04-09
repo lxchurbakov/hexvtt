@@ -1,7 +1,8 @@
 import express from 'express';
-import { HttpError } from "lib/express-utils";
+
 import { db } from 'lib/knex';
 import { readJWT } from 'lib/security';
+import { HttpError } from 'lib/express-utils';
 
 export const getUser = async (req: express.Request) => {
     const token = req.get('Authorization');

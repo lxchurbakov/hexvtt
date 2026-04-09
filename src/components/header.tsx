@@ -1,6 +1,7 @@
 import React from 'react';
-import { Flex, Heading, Clickable, Paragraph, BaseProps, Card, Image } from 'lib/atoms';
 import { useNavigate } from 'react-router-dom';
+
+import { Flex, Heading, Clickable, BaseProps, Card, Image } from 'lib/atoms';
 
 export const Header = ({ ...props }: BaseProps) => {
     const navigate = useNavigate();
@@ -17,10 +18,6 @@ export const Header = ({ ...props }: BaseProps) => {
                 </Clickable>
                 
                 <Flex gap="20px">
-                    {/* <Clickable>
-                        <Heading color="white" weight="600" size="16px">Главная</Heading>
-                    </Clickable> */}
-
                     <Clickable onClick={() => navigate('/games')}>
                         <Heading color="white" weight="600" size="16px">Играть</Heading>
                     </Clickable>
@@ -29,24 +26,6 @@ export const Header = ({ ...props }: BaseProps) => {
                         <Heading color="white" weight="400" size="16px">Не играть</Heading>
                     </Clickable>
                 </Flex>
-
-                {/* <
-
-                <Clickable>
-                    <Paragraph weight="400">Канал</Paragraph>
-                </Clickable> */}
-
-                {/* <Clickable>
-                    <Paragraph weight="400">docs</Paragraph>
-                </Clickable> */}
-
-                {/* <Clickable>
-                    <Text weight="400">examples</Text>
-                </Clickable>
-
-                <Clickable>
-                    <Text weight="400">author</Text>
-                </Clickable> */}
             </Flex>
         </Card>
     );

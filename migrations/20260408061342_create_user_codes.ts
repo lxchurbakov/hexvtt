@@ -1,6 +1,5 @@
 import type { Knex } from "knex";
 
-
 export async function up(knex: Knex): Promise<void> {
     return knex.raw(`
         CREATE TABLE IF NOT EXISTS user_codes (
@@ -10,7 +9,6 @@ export async function up(knex: Knex): Promise<void> {
         )
     `);
 }
-
 
 export async function down(knex: Knex): Promise<void> {
      return knex.raw(`

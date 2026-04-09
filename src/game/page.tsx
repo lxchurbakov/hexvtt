@@ -1,8 +1,9 @@
-import { ScreenContainer } from '@/components/containers';
-import { Header } from '@/components/header';
-import { Absolute, Card, Flex, Heading, Paragraph } from 'lib/atoms';
 import React from 'react';
 import { useParams } from 'react-router-dom';
+
+import { Absolute, Card, Flex, Heading, Paragraph } from 'lib/atoms';
+
+import { ScreenContainer } from '@/components/containers';
 
 export const GamePage = () => {
     const { gameId } = useParams();

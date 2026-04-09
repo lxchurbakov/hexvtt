@@ -1,15 +1,14 @@
 import React from 'react';
 
-import { CondensedContainer } from '@/components/containers';
+import { LineInput } from 'lib/inputs';
+import { Base, Disabled, Flex, Heading, Image, Paragraph } from 'lib/atoms';
+
+import { useToken } from '@/utils/api';
 import { Header } from '@/components/header';
 import { Button } from '@/components/button';
-
-import { Base, Disabled, Flex, Heading, Image, Paragraph } from 'lib/atoms';
-import { LineInput } from 'lib/inputs';
+import { CondensedContainer } from '@/components/containers';
 
 import { useSession, useUser } from './hooks';
-import { useToken } from '@/utils/api';
-import { useForth } from 'lib/use-forth';
 
 const Authorize = () => {
     const session = useSession();

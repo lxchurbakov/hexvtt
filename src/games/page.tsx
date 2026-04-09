@@ -1,15 +1,18 @@
-import { CondensedContainer } from '@/components/containers';
-import { Header } from '@/components/header';
-import { BaseProps, Card, Clickable, Flex, Heading, Paragraph } from 'lib/atoms';
 import React from 'react';
-import { DownloadIcon } from './icons/download';
+import { useNavigate } from 'react-router-dom';
+
+import { BaseProps, Card, Clickable, Flex, Heading, Paragraph } from 'lib/atoms';
+
+import { useApi } from '@/utils/api';
+import { Header } from '@/components/header';
+import { useAsyncMemo, useTicker } from '@/utils/hooks';
+import { CondensedContainer } from '@/components/containers';
+
 import { EnterIcon } from './icons/enter';
 import { TrashIcon } from './icons/trash';
-import { useApi } from '@/utils/api';
-import { useNavigate } from 'react-router-dom';
-import { useAsyncMemo, useTicker } from '@/utils/hooks';
+import { DownloadIcon } from './icons/download';
+
 import { Game } from './types';
-import { useForth } from 'lib/use-forth';
 
 const GameCard = ({ game, onDelete, onEnter, ...props }: BaseProps & { game: Game, onDelete: () => void, onEnter: () => void }) => {
     return (
@@ -66,13 +69,10 @@ export const GamesPage = () => {
     const api = useApi();
     const navigate = useNavigate();
 
-    // const _games = useForth(() => api.get('/games'));
     const ticker = useTicker();
-    const [games, loading] = useAsyncMemo<Game[]>(() => api.get('/games'), [api, ticker], []);
+    const [games] = useAsyncMemo<Game[]>(() => api.get('/games'), [api, ticker], []);
 
     const create = React.useCallback(async () => {
-        // Создать игру с рандомным именем
-        // Открыть страницу игры
         const num = Math.floor(Math.random() * 1000);
         const name = `My Cool Game #${num}`;
 
@@ -85,8 +85,6 @@ export const GamesPage = () => {
         await api.delete(`/games/${gameId}`);
         ticker();
     }, [api, ticker]);
-
-    // console.log({ games });
 
     return (
         <CondensedContainer pt="24px">

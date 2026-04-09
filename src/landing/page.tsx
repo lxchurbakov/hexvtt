@@ -1,20 +1,12 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet';
-import { Base, Card, Clickable, Container, Flex, Heading, Paragraph, Text } from 'lib/atoms';
 import styled from 'styled-components';
-// import { Routes, Route } from "react-router-dom";
-// import Readme from './readme';
-// import S3Page from './examples/s3/page';
-// import PostgresPage from './examples/postgres/page';
-// import RedisPage from './examples/redis/page';
 
 import * as theme from 'lib/theme';
+import { Base, Card, Clickable, Flex, Heading, Paragraph } from 'lib/atoms';
+
 import { Header } from '@/components/header';
 import { CondensedContainer } from '@/components/containers';
-import { useNavigate } from 'react-router-dom';
-// import { Footer } from './components/footer';
-// import { TgChannel } from './components/tg-channel';
 
 const GradientText = styled.span`
     background: -webkit-linear-gradient(0deg, #4092f4, #00ffdc);
@@ -23,8 +15,6 @@ const GradientText = styled.span`
 `;
 
 export const LandingPage = () => {
-    const navigate = useNavigate();
-
     return (
         <CondensedContainer pt="24px">
             <Header mb="256px" />
