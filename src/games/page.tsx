@@ -11,9 +11,9 @@ import { useAsyncMemo, useTicker } from '@/utils/hooks';
 import { Game } from './types';
 import { useForth } from 'lib/use-forth';
 
-const GameCard = ({ game, onDelete, ...props }: BaseProps & { game: Game, onDelete: () => void }) => {
+const GameCard = ({ game, onDelete, onEnter, ...props }: BaseProps & { game: Game, onDelete: () => void, onEnter: () => void }) => {
     return (
-        <Card background='#EFEFEF' p="20px" radius="24px">
+        <Card background='#EFEFEF' p="20px" radius="24px" {...props}>
             <Heading size="22px" weight="bold" color="#111111">{game.name}</Heading>
             <Paragraph mb="18px" size="18px" color="#777777">Изменено 10 минут назад</Paragraph>
 
@@ -45,7 +45,7 @@ const GameCard = ({ game, onDelete, ...props }: BaseProps & { game: Game, onDele
                         </Flex>
                     </Clickable>
 
-                    <Clickable background="#111111" radius="12px" w="40px" h="40px">
+                    <Clickable background="#111111" radius="12px" w="40px" h="40px" onClick={onEnter}>
                         <Flex w="100%" h="100%">
                             <EnterIcon />
                         </Flex>
@@ -97,7 +97,7 @@ export const GamesPage = () => {
 
             <Flex justify="flex-start" isWrap gap="24px">
                 {games.map((game) => (
-                    <GameCard game={game} onDelete={() => remove(game.id)} />
+                    <GameCard game={game} onDelete={() => remove(game.id)} onEnter={() => navigate(`/games/${game.id}`)} />
                 ))}
 
                 <Clickable onClick={create} background='#EFEFEF' p="20px" radius="24px" w="260px" h="220px">

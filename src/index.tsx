@@ -8,6 +8,7 @@ import { SessionPage } from './session/page';
 import { NotFoundPage } from './misc/404';
 import { GamesPage } from './games/page';
 import { GamePage } from './game/page';
+import { LandingPage } from './landing/page';
 
 export default () => {
     return (
@@ -18,15 +19,13 @@ export default () => {
             </Helmet>
 
             <Routes>
+                <Route path='/' element={<LandingPage />} />
                 <Route path='/session' element={<SessionPage />} />
+
                 <Route path='/games' element={<GamesPage />} />
                 <Route path='/games/:gameId' element={<GamePage />} />
                 
                 <Route path='*' element={<NotFoundPage />} />
-                {/* <Route path='/auth/:token' element={<ProcessTokenPage />} />
-                <Route path='/games/:gameId' element={<GamePage />} /> */}
-                
-                {/* <Route path='*' element={<GamesPage />} /> */}
             </Routes>
         </>
     );

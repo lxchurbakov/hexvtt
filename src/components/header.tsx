@@ -8,7 +8,7 @@ export const Header = ({ ...props }: BaseProps) => {
     return (
         <Card background="#333333" radius="36px" p="16px 24px" w="100%" {...props}>
             <Flex justify="space-between">
-                <Clickable>
+                <Clickable onClick={() => navigate('/')}>
                     <Flex gap="8px">
                         <Image src="logo-white-out.svg" w="36px" />
 
@@ -17,16 +17,16 @@ export const Header = ({ ...props }: BaseProps) => {
                 </Clickable>
                 
                 <Flex gap="20px">
-                    <Clickable>
+                    {/* <Clickable>
                         <Heading color="white" weight="600" size="16px">Главная</Heading>
-                    </Clickable>
+                    </Clickable> */}
 
                     <Clickable onClick={() => navigate('/games')}>
-                        <Heading color="white" weight="400" size="16px">Игры</Heading>
+                        <Heading color="white" weight="600" size="16px">Играть</Heading>
                     </Clickable>
 
                     <Clickable>
-                        <Heading color="white" weight="400" size="16px">О нас</Heading>
+                        <Heading color="white" weight="400" size="16px">Не играть</Heading>
                     </Clickable>
                 </Flex>
 

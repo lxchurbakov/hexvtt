@@ -11,6 +11,8 @@ import styled from 'styled-components';
 
 import * as theme from 'lib/theme';
 import { Header } from '@/components/header';
+import { CondensedContainer } from '@/components/containers';
+import { useNavigate } from 'react-router-dom';
 // import { Footer } from './components/footer';
 // import { TgChannel } from './components/tg-channel';
 
@@ -20,11 +22,11 @@ const GradientText = styled.span`
     -webkit-text-fill-color: transparent;
 `;
 
-export const BoxPage = () => {
-    return (
-        <Container>
-           
+export const LandingPage = () => {
+    const navigate = useNavigate();
 
+    return (
+        <CondensedContainer pt="24px">
             <Header mb="256px" />
 
             <Base mb="256px">
@@ -34,15 +36,69 @@ export const BoxPage = () => {
                     {/* <GradientText>сделанная в России</GradientText> */}
                 </Heading>
 
-                <Paragraph mb="36px" weight="400" size="22px" mw="600px">
+                <Paragraph mb="48px" weight="400" size="22px" mw="600px">
                     Мы создаем первый в РФ VTT с упором на шестиугольный дизайн. 
                 </Paragraph>
 
                 <Clickable p="18px 36px" radius="36px" background="#16dbe4" style={{ position: 'relative' }} border={`2px solid ${theme.colors.white}`}>
                     <img src="dragon.png" style={{ position: 'absolute', height: '250%', right: -20, bottom: -30, clipPath: 'inset(0 0 30px 0)' }} />
-                    <Paragraph style={{ position: 'relative', zIndex: 2 }} size="22px" weight="bold" color={theme.colors.white}>Открыть приложение</Paragraph>
+                    
+                    <Paragraph style={{ position: 'relative', zIndex: 2 }} size="22px" weight="bold" color={theme.colors.white}>
+                        КНОПКА ДРАКОН РРР
+                    </Paragraph>
                 </Clickable>
             </Base>
+
+            <Base mb="256px">
+                <Heading size="32px" weight="bold" mb="12px">Мы переосмысляем VTT</Heading>
+                <Paragraph mb="36px">Мы создаем новую VTT с нуля. </Paragraph>
+
+                <Flex w="100%" gap="12px">
+                    <Card w="calc((100% - (12px * 2)) / 3)" h="250px" background="#efefef" radius="12px" />
+                    <Card w="calc((100% - (12px * 2)) / 3)" h="250px" background="#efefef" radius="12px" />
+                    <Card w="calc((100% - (12px * 2)) / 3)" h="250px" background="#efefef" radius="12px" />
+                </Flex>
+            </Base>
+
+            <Base mb="256px">
+                <Heading size="32px" weight="bold" mb="12px">Не только РПГ</Heading>
+                <Paragraph mb="36px">Новые механики, которые позволят вам играть не только в DND</Paragraph>
+
+                <Flex w="100%" gap="12px">
+                    <Card w="calc((100% - (12px * 2)) / 3)" h="250px" background="#efefef" radius="12px" />
+                    <Card w="calc((100% - (12px * 2)) / 3)" h="250px" background="#efefef" radius="12px" />
+                    <Card w="calc((100% - (12px * 2)) / 3)" h="250px" background="#efefef" radius="12px" />
+                </Flex>
+            </Base>
+
+            <Base mb="256px">
+                <Heading size="32px" weight="bold" mb="12px">Hexagon is the bestagon</Heading>
+                <Paragraph mb="36px">Мы сконцентрировались на HEX гриде и поддерживаем только его</Paragraph>
+
+                <Flex w="100%" gap="12px" isWrap justify="flex-start">
+                    <Card w="calc((100% - (12px * 1)) / 2)" h="250px" background="#efefef" radius="12px" />
+                    <Card w="calc((100% - (12px * 1)) / 2)" h="250px" background="#efefef" radius="12px" />
+                    <Card w="calc((100% - (12px * 1)) / 2)" h="250px" background="#efefef" radius="12px" />
+                </Flex>
+            </Base>
+
+            <Base mb="256px">
+                <Heading size="32px" weight="bold" mb="12px">🇷🇺 <GradientText>СВО</GradientText>я VTT 🇷🇺</Heading>
+                <Paragraph mb="36px">СДЕЛАНО В РОССИИ ГОЙДА. ФАУНДРИ В С Ё</Paragraph>
+
+                <Flex w="100%" gap="12px" isWrap justify="flex-start">
+                    <Card w="calc((100% - (12px * 1)) / 2)" h="250px" background="#efefef" radius="12px" />
+                    <Card w="calc((100% - (12px * 1)) / 2)" h="250px" background="#efefef" radius="12px" />
+                    <Card w="calc((100% - (12px * 1)) / 2)" h="250px" background="#efefef" radius="12px" />
+                    <Card w="calc((100% - (12px * 1)) / 2)" h="250px" background="#efefef" radius="12px" />
+                </Flex>
+            </Base>
+
+            <Card mb="24px" w="100%" h="250px" background="#efefef" radius="12px">
+                <Flex h="100%">
+                    <Paragraph>Это футер</Paragraph>
+                </Flex>
+            </Card>
 
             {/* <Flex gap="12px" align="flex-start" mb="256px" isWrap justify="flex-start">
                 <Card w="calc((100% - 12px) / 2)" border={`2px solid ${theme.colors.text}`} radius="24px" p="30px">
@@ -88,23 +144,19 @@ export const BoxPage = () => {
                 </Card>
             </Flex> */}
 
-            <Base mb="256px">
+            {/* <Base mb="256px">
                 <Heading line="1.2" mb="24px" weight="bold" size="32px">Присоединяйся к сообществу</Heading>
                 <Paragraph mb="36px" weight="400" size="18px" mw="600px">
                     Отвечаем на вопросы и обсуждаем ваши пет проекты в канале. Присоединяйтесь!
-                </Paragraph>
-
-                {/* <TgChannel mb="30px" /> */}
-
-                
+                </Paragraph>                
 
                 <Clickable p="18px 36px" radius="36px" background={theme.colors.text}>
                     <Paragraph size="18px" weight="bold" color="white">Присоединиться</Paragraph>
                 </Clickable>
-            </Base>
+            </Base> */}
 
             {/* <Footer /> */}
-        </Container>
+        </CondensedContainer>
     );
 };
 
