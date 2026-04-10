@@ -7,7 +7,7 @@ import * as theme from 'lib/theme';
 import { SessionPage } from './session/page';
 import { NotFoundPage } from './misc/404';
 import { GamesPage } from './games/page';
-import { GamePage } from './game/page';
+import { GamePage } from './game';
 import { LandingPage } from './landing/page';
 
 export default () => {
