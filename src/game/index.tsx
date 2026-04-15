@@ -5,6 +5,7 @@ import { Canvas } from './core/canvas';
 import { Entrypoint } from "./core/entrypoint";
 import { Grid } from './core/grid';
 import { Viewport } from './core/viewport';
+import { SideTabs } from './core/side-tabs';
 
 // export class Game {
 //     public render = (slot: string) => {
@@ -38,6 +39,7 @@ if (typeof window !== 'undefined') {
     const viewport = new Viewport();
     const canvas = new Canvas(entrypoint, viewport);
     const grid = new Grid(canvas, viewport);
+    const sideTabs = new SideTabs(entrypoint);
 }
 
  export const GamePage = () => {

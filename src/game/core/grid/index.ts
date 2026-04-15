@@ -46,7 +46,7 @@ export class Grid {
 
             context.strokeStyle = '#cccccc';
             context.lineWidth = 1;
-            // context.globalAlpha = .2;
+            context.globalAlpha = .3;
 
             const { translate } = this.viewport;
 
@@ -65,13 +65,15 @@ export class Grid {
                     const center = hex_to_2d({ q, r, s }, GRID_WIDTH);
 
                     context.strokeStyle = '#aaa';
-                    context.globalAlpha = 1;
+                    // context.globalAlpha = 1;
 
                     context.beginPath();
                     draw_hexagon(context, center, GRID_WIDTH);
                     context.stroke();
                 }
             }
+
+            context.globalAlpha = 1;
 
             if (this.flag) {
                 context.drawImage(this.flag, -2, -60, 45, 60);

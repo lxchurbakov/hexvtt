@@ -69,7 +69,8 @@ export class Canvas {
     public onRender = new EventEmitter();
 
     private render = (context: CanvasRenderingContext2D, width: number, height: number) => {
-        context.clearRect(0, 0, width, height);
+        context.fillStyle = 'black';
+        context.fillRect(0, 0, width, height);
 
         // Viewport offset
         context.save();
@@ -77,8 +78,6 @@ export class Canvas {
 
             this.onRender.emitps({ context, width, height });
 
-          
-        
         context.restore();
     };
 }
